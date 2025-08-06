@@ -1,3 +1,24 @@
+Pgila Knowledge Microservice
+Microservicio desarrollado con FastAPI y SQLAlchemy para gestionar conocimientos, aplicando el patrón Singleton para una conexión eficiente a la base de datos MariaDB.
+
+🚀 Características
+
+- 📦 Exposición de API REST para registrar y consultar conocimientos
+- 🔁 Conexión reutilizable a la base de datos usando el patrón Singleton
+- 🧱 Arquitectura modular (CRUD, modelos, esquemas, endpoints)
+- 📄 Validación de datos de entrada/salida con Pydantic
+- 🛠 Listo para escalar y conectar con otros microservicios de Pgila
+
+📡 Endpoints REST
+
+| Método | Endpoint            | Descripción                     |
+|--------|---------------------|---------------------------------|
+| POST   | `/knowledges/`      | Crear un nuevo conocimiento     |
+| GET    | `/knowledges/`      | Listar todos los conocimientos  |
+
+Puedes probar la API directamente en Swagger:  
+👉 http://localhost:8000/docs
+
 Tecnologías
 FastAPI: Microservicio asíncrono.
 
@@ -34,6 +55,16 @@ El método __new__ verifica si ya existe una instancia. Si no, la crea, configur
 Así, cada vez que llamas Database(), obtienes la misma instancia y la misma sesión de base de datos.
 
 ----------------------------------------------------
+🗂️ Estructura de carpetas
+
+pgila_knowledge/
+├── main.py # FastAPI app
+├── db_singleton.py # Patrón Singleton (conexión DB)
+├── models.py # Tablas SQLAlchemy
+├── schemas.py # Modelos Pydantic
+├── crud.py # Lógica de acceso a datos
+├── requirements.txt # Dependencias del proyecto
+└── .env # Variables de entorno
 
 models.py
 Define las clases que representan las tablas de la base de datos (por ejemplo, Knowledge).
@@ -58,3 +89,12 @@ Define las rutas/endpoints y conecta todo lo anterior.
 Resumen
 El Singleton se aplica en db_singleton.py para la gestión de la base de datos.
 Cada archivo tiene una responsabilidad clara y es necesario para mantener el proyecto limpio, modular y fácil de mantener.
+
+
+🛤 Roadmap (mejoras planeadas)
+
+- [ ] Añadir autenticación JWT
+- [ ] Validación avanzada de entradas con dependencias
+- [ ] Despliegue en Docker y contenedorización
+- [ ] Implementación de pruebas unitarias con Pytest
+- [ ] Integración con microservicio de procedimientos
